@@ -1,6 +1,17 @@
 import React from 'react';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 
-const App = () => <h1>Hello</h1>;
+const App = ({ data }) => <h1>Hello, {data.name}!</h1>;
 
-export default App;
+const query = gql`
+{
+    name,
+    age
+}
+`;
+
+export default graphql(
+    query
+)(App);
 
