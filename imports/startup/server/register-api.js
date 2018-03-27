@@ -1,18 +1,19 @@
 import { createApolloServer } from 'meteor/apollo';
 import { makeExecutableSchema } from 'graphql-tools';
 
-import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';
+import ResolutionSchema from '../../api/resolutions/Resolutions.graphql';
 
 const testSchema = `
 type Query {
     name: String,
-    age: Int
+    age: Int,
+    resolutions: [Resolution]
 }
 `;
 
 const typeDefs = [
     testSchema,
-    ResolutionsSchema
+    ResolutionSchema
 ];
 
 const resolvers = {
@@ -22,6 +23,18 @@ const resolvers = {
         },
         age() {
             return 27;
+        },
+        resolutions() {
+            return [
+                {
+                    _id: "asfasfasfasf",
+                    name: "Get stuff done!"
+                },
+                {
+                    _id: "eeeeeeeeeeee",
+                    name: "Read a book!"
+                }
+            ];
         }
     }
 }
