@@ -2,6 +2,8 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
+import ResolutionForm from './ResolutionForm';
+
 const App = ({ data }) => {
     if(data.loading) {
         return 'Loading';
@@ -10,10 +12,13 @@ const App = ({ data }) => {
         <div>
             <div>
                 <h1>Hi, {data.name}!</h1>    
+                <ResolutionForm/>
             </div>
             <ul>
-                {data.resolutions.map(r => (
-                    <li>{r.name}</li>
+                {data.resolutions.map(resolution => (
+                    <li key={resolution._id}>
+                        {resolution.name}
+                    </li>
                 ))}
             </ul>
         </div>
