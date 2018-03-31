@@ -1,5 +1,4 @@
 import Resolutions from './resolutions';
-
 export default {
   Query: {
       resolutions() {
@@ -7,11 +6,13 @@ export default {
       }
   },
   Mutation: {
-      createResolution() {
-          console.log('hei');
-      //   const resolutionId = Resolutions.insert({
-      //      name: 'Test res'
-      //    });
-     }
+    createResolution(obj, { name }, context) {
+        const resolutionId = Resolutions.insert({name});
+        return Resolutions.findOne(resolutionId);
+    },
+    deleteResolution(obj, { _id }, context) {
+        const resolutionId = Resolutions.remove({_id});
+        return _id;
+    }
   }
 }

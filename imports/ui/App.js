@@ -3,21 +3,28 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
 import ResolutionForm from './ResolutionForm';
+import DeleteResolution from './DeleteResolution';
+import RegisterForm from './RegisterForm';
+import LoginForm from './LoginForm';
 
-const App = ({ data }) => {
-    if(data.loading) {
+const App = ({ loading, resolutions }) => {
+    if(loading) {
         return 'Loading';
     } else {
         return (
         <div>
             <div>
-                <h1>Hi, {data.name}!</h1>    
+                <LoginForm/>
+                <br/>
                 <ResolutionForm/>
+                <br/>
+                <RegisterForm/>
             </div>
             <ul>
-                {data.resolutions.map(resolution => (
+                {resolutions.map(resolution => (
                     <li key={resolution._id}>
                         {resolution.name}
+                        <DeleteResolution _id={resolution._id}/>
                     </li>
                 ))}
             </ul>
@@ -27,7 +34,7 @@ const App = ({ data }) => {
 };
 
 const query = gql`
-{
+query resolutions {
     name
     age
     resolutions {
@@ -37,7 +44,7 @@ const query = gql`
 }
 `;
 
-export default graphql(
-    query
-)(App);
+export default graphql(query, {
+    props: ({data}) => ({...data})
+})(App);
 
