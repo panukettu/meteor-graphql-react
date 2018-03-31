@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+import { FloatingActionButton, TextField } from 'material-ui';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
@@ -14,18 +16,22 @@ class ResolutionForm extends Component {
   submitForm = () => {
     this.props.createResolution({
       variables: {
-        name: this.name.value
+        name: this.name
       }
     }).catch(error => {
       console.log(error)
     });
   }
 
+  handleChange(e, value) {
+    this.name = value;
+  }
+
   render() {
     return (
       <div>
-        <input type="text" ref={input => (this.name = input)}/>
-        <button onClick={this.submitForm}>Submit</button>
+        <TextField floatingLabelText="Resolution" onChange={this.handleChange.bind(this)}/>
+        <FloatingActionButton onClick={this.submitForm} mini={true}/>
       </div>
     )
   }

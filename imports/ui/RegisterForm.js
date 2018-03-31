@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { TextField, RaisedButton, Paper, FloatingActionButton } from 'material-ui'; 
 import { Accounts } from 'meteor/accounts-base';
 
 export default class RegisterForm extends React.Component {
@@ -20,13 +21,26 @@ export default class RegisterForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.registerUser}>
-        Email<br/>
-        <input type="email" ref={input => (this.email = input)}/><br/>
-        Password<br/>       
-        <input type="password" ref={input => (this.password = input)}/>
-        <button type="submit">Register user</button>
+      <form onSubmit={this.registerUser} style={styles.formContainer}>
+        <Paper style={styles.paperContainer}>
+          <h2>Register</h2>
+          <TextField floatingLabelText="Email" ref={input => (this.email = input)}/>
+          <TextField floatingLabelText="Password" ref={input => (this.email = input)}/>
+          <RaisedButton label="Register" secondary={true}/>
+        </Paper>
       </form>
     )
+  }
+}
+
+const styles = {
+  formContainer: {
+    margin: 5,
+  },
+  paperContainer: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    padding: 15,
   }
 }
