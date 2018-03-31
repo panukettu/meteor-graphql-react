@@ -21,10 +21,13 @@ const App = ({ loading, client, user }) => {
 		return (
 			<MuiThemeProvider>
 				{user._id ? (
-					<div id="container" style={styles.container}>
-						<Sidebar client={client} user={user}/>
-            <Content/>
-					</div>
+            <div id='container' style={styles.container}>
+              <AppBar title={user._id} showMenuIconButton={false}/>
+              <div id='content' style={styles.content}>
+                <Sidebar client={client} user={user}/>
+                <Content/>
+              </div>
+            </div>
 				) : (
 					<div style={styles.loginContainer}>
 						<LoginForm client={client} />
@@ -51,18 +54,21 @@ export default graphql(query, {
 
 const styles = {
 	container: {
-		display: "flex",
-		flex: 1,
-		flexDirection: "row",
-		justifyContent: "center",
-		alignContent: "center"
-	},
-	loginContainer: {
-		display: "flex",
-		flex: 1,
-		flexDirection: "row",
-		justifyContent: "center",
-		alignItems: "center",
-		alignContent: "center"
-	}
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+  },
+  content: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'row',
+  },
+  loginContainer: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center'
+  }
 };

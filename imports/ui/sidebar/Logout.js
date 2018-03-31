@@ -20,6 +20,6 @@ const styles = {
     marginTop: 'auto',
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginBottom: 10
+    marginBottom: 'auto'
   }
 }

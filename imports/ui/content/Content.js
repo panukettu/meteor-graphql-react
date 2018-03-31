@@ -8,11 +8,11 @@ import AppBar from 'material-ui/AppBar';
 import Resolutions from "../Resolutions";
 
 const Content = ({resolutions, loading}) => (
-	<div style={styles.contentContainer}>
-		<div id="top-container">
-			<AppBar showMenuIconButton={false}/>
+	<div id="main-content" style={styles.mainContent}>
+		<div id="main-content-header" style={styles.mainContentHeader}>
+      top
 		</div>
-		<div id="content" style={styles.content}>
+		<div id="main-content-page" style={styles.mainContentPage}>
     {loading ? (
       	<div>Loading</div>
     ) : (
@@ -36,13 +36,15 @@ export default graphql(query, {
 })(Content);
 
 const styles = {
-  content: {
-    display: "flex",
-    flex: 1
-  },
-  contentContainer: {
-    display: "flex",
+  mainContent: {
+    display: 'flex',
     flex: 1,
-    flexDirection: "column",
+    flexDirection: 'column',
   },
+  mainContentHeader: {
+    flex: 0.1
+  },
+  mainContentPage: {
+    flex: 0.9
+  }
 }

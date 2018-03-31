@@ -2,11 +2,11 @@ import React from "react";
 
 import AppBar from "material-ui/AppBar";
 import { List, ListItem } from "material-ui/List";
+import Paper from "material-ui/Paper";
 import Logout from './Logout';
 
 export default Sidebar = ({client, user}) => (
-  <div id="side-container" style={styles.sideContainer}>
-    <AppBar title={user._id} showMenuIconButton={false}/>
+    <Paper id="side-content" style={styles.sideContent}>
       <List>
         <ListItem>Item 1</ListItem>
         <ListItem>Item 2</ListItem>
@@ -16,15 +16,14 @@ export default Sidebar = ({client, user}) => (
         <ListItem>Item 6</ListItem>
         <ListItem>Item 7</ListItem>
       </List> 
-    <Logout client={client}/>
-  </div>
+      <Logout client={client}/>
+    </Paper>
 )
 
 const styles = {
-  sideContainer: {
-    display: "flex",
+  sideContent: {
+    display: 'flex',
     flex: 0.15,
-    flexDirection: "column",
-    justifyContnet: "flex-end",
+    flexDirection: 'column'
   }
 }
