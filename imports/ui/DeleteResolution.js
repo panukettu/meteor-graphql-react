@@ -19,9 +19,6 @@ class DeleteResolution extends React.Component {
       variables: {
         _id: this.props._id
       }
-    }).then((res) => {
-      console.log(res);
-      this.props.refetch();
     }).catch(error => {
       console.log(error);
     });
@@ -37,5 +34,8 @@ class DeleteResolution extends React.Component {
 };
 
 export default graphql(deleteResolution, {
-  name: "deleteResolution"
+  name: "deleteResolution",
+  options: {
+    refetchQueries: ['resolutions']
+  }
 })(DeleteResolution);
