@@ -4,10 +4,15 @@ import { TextField, RaisedButton, Paper } from 'material-ui';
 import { Accounts } from 'meteor/accounts-base';
 
 export default class LoginForm extends React.Component {
+  constructor() {
+    super();
+    this.email = '';
+    this.password = '';
+  }
+  
   loginUser = (e) => {
     e.preventDefault();
-
-    Meteor.loginWithPassword(this.email.value, this.password.value, 
+    Meteor.loginWithPassword(this.email, this.password, 
       error => {
         if(!error) { 
           this.props.client.resetStore();
@@ -17,14 +22,22 @@ export default class LoginForm extends React.Component {
     );
   }
 
+  onEmailChange = (e, val) => {
+    this.email = val;
+  }
+
+  onPasswordChange = (e, val) => {
+    this.password = val;
+  }
+
   render() {
     return (
       <form onSubmit={this.loginUser} style={styles.formContainer}>
         <Paper style={styles.paperContainer}>
         <h2>Login</h2>
-            <TextField type="email" floatingLabelText="Username" ref={input => (this.email = input)}/>
-            <TextField type="password" floatingLabelText="Password" ref={input => (this.password = input)}/>
-            <RaisedButton label="Login" primary={true}/>
+            <TextField type="email" floatingLabelText="Email" onChange={this.onEmailChange.bind(this)}/>
+            <TextField type="password" floatingLabelText="Password" onChange={this.onPasswordChange.bind(this)}/>
+            <RaisedButton type="submit" label="Enter" primary={true}/>
         </Paper>
       </form>
     )

@@ -33,7 +33,7 @@ class DeleteResolution extends React.Component {
   render() {
     return (
       <div>
-        <i className="material-icons" onClick={this.onSubmit}><RemoveCircleOutline/></i> 
+        {<RemoveCircleOutline/>}
       </div>
     )
   }
