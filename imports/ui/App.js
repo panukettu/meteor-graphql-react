@@ -12,7 +12,7 @@ import LoginForm from "./LoginForm";
 import Sidebar from "./sidebar/Sidebar";
 import Content from "./content/Content";
 
-import AppBar from 'material-ui/AppBar';
+import AppBar from "material-ui/AppBar";
 
 const App = ({ loading, client, user }) => {
 	if (loading) {
@@ -21,13 +21,13 @@ const App = ({ loading, client, user }) => {
 		return (
 			<MuiThemeProvider>
 				{user._id ? (
-            <div id='container' style={styles.container}>
-              <AppBar title={user._id} showMenuIconButton={false}/>
-              <div id='content' style={styles.content}>
-                <Sidebar client={client} user={user}/>
-                <Content/>
-              </div>
-            </div>
+					<div id="container" style={styles.container}>
+						<AppBar title={user._id} showMenuIconButton={false} />
+						<div id="content" style={styles.content}>
+							<Sidebar client={client} user={user} />
+							<Content />
+						</div>
+					</div>
 				) : (
 					<div style={styles.loginContainer}>
 						<LoginForm client={client} />
@@ -43,7 +43,7 @@ const query = gql`
 	query user {
 		user {
 			_id
-      email 
+			email
 		}
 	}
 `;
@@ -54,21 +54,21 @@ export default graphql(query, {
 
 const styles = {
 	container: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column',
-  },
-  content: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'row',
-  },
-  loginContainer: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignContent: 'center'
-  }
+		display: "flex",
+		flex: 1,
+		flexDirection: "column"
+	},
+	content: {
+		display: "flex",
+		flex: 1,
+		flexDirection: "row"
+	},
+	loginContainer: {
+		display: "flex",
+		flex: 1,
+		flexDirection: "column",
+		alignItems: "center",
+		justifyContent: "center",
+		alignContent: "center"
+	}
 };
