@@ -11,10 +11,6 @@ export default Sidebar = ({client, user}) => (
         <ListItem>Item 1</ListItem>
         <ListItem>Item 2</ListItem>
         <ListItem>Item 3</ListItem>
-        <ListItem>Item 4</ListItem>
-        <ListItem>Item 5</ListItem>
-        <ListItem>Item 6</ListItem>
-        <ListItem>Item 7</ListItem>
       </List> 
       <Logout client={client}/>
     </Paper>

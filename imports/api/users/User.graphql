@@ -1,4 +1,9 @@
 type User {
   _id: String
   email: String
+  emailStartsWithP: Boolean
+}
+
+extend type Query {
+  user: User
 }

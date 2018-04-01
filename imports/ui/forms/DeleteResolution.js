@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import gql from 'graphql-tag';
 
 import { graphql } from 'react-apollo'
-import {FloatingActionButton} from 'material-ui';
 
 import RemoveCircleOutline from 'material-ui/svg-icons/content/remove-circle-outline';
+import ActionInfo from 'material-ui/svg-icons/action/info';
 
 
 
@@ -15,8 +15,6 @@ const deleteResolution = gql`
     }
   }
 `;
-
-console.log(RemoveCircleOutline);
 
 class DeleteResolution extends React.Component {
   onSubmit = () => {
@@ -32,9 +30,7 @@ class DeleteResolution extends React.Component {
 
   render() {
     return (
-      <div>
-        {<RemoveCircleOutline/>}
-      </div>
+      <ActionInfo onClick={this.onSubmit}/>
     )
   }
 };

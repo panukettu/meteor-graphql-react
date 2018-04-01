@@ -5,7 +5,7 @@ import { graphql } from "react-apollo";
 
 import AppBar from 'material-ui/AppBar';
 
-import Resolutions from "../Resolutions";
+import Resolutions from "./resolutions/Resolutions";
 
 const Content = ({resolutions, loading}) => (
 	<div id="main-content" style={styles.mainContent}>

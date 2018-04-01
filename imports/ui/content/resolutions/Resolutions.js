@@ -5,9 +5,13 @@ import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import { List, ListItem, makeSelectable } from 'material-ui/List';
 
+import ActionInfo from 'material-ui/svg-icons/action/info';
+import DeleteResolution from "../../forms/DeleteResolution";
+import Goals from '../goals/Goals';
 
 
-const createResolution = gql`
+
+const mutation = gql`
   mutation createResolution($name: String!) {
     createResolution(name: $name) {
       _id
@@ -31,6 +35,7 @@ class Resolutions extends Component {
   handleChange(e, value) {
     this.name = value;
   }
+  de
 
   render() {
     return (
@@ -42,8 +47,9 @@ class Resolutions extends Component {
         <FloatingActionButton onClick={this.submitForm} mini={true} />
         <List>
           {this.props.resolutions.map(resolution => (
-            <ListItem key={resolution._id}>
+            <ListItem key={resolution._id} rightIcon={<DeleteResolution _id={resolution._id} />}>
               {resolution.name}
+              <Goals resolutionId={resolution._id}/>
             </ListItem>
           ))}
         </List>
@@ -52,7 +58,7 @@ class Resolutions extends Component {
   }
 }
 
-export default graphql(createResolution, {
+export default graphql(mutation, {
   name: "createResolution",
   options: {
     refetchQueries: ["resolutions"]

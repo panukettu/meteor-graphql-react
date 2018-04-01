@@ -7,8 +7,8 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import darkBaseTheme from "material-ui/styles/baseThemes/darkBaseTheme";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 
-import RegisterForm from "./RegisterForm";
-import LoginForm from "./LoginForm";
+import RegisterForm from "./forms/RegisterForm";
+import LoginForm from "./forms/LoginForm";
 import Sidebar from "./sidebar/Sidebar";
 import Content from "./content/Content";
 
@@ -22,7 +22,7 @@ const App = ({ loading, client, user }) => {
 			<MuiThemeProvider>
 				{user._id ? (
 					<div id="container" style={styles.container}>
-						<AppBar title={user._id} showMenuIconButton={false} />
+						<AppBar title={user.email} showMenuIconButton={false} />
 						<div id="content" style={styles.content}>
 							<Sidebar client={client} user={user} />
 							<Content />
