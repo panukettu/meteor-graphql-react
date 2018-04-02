@@ -71,7 +71,7 @@ const Layout = ({ data }) => (
 			{data.loading ? (
 				<CircularProgress />
 			) : (
-				<DivisionForm divisions={data.divisions} />
+				<DivisionForm divisions={data.divisions} /> 
 			)}
 		</div>
 	</div>
