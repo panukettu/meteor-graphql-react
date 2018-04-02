@@ -1,0 +1,18 @@
+# name
+# createdAt
+# [todoId]
+
+type Division {
+    _id: String
+    name: String
+    skills: [Skill]
+}
+
+type Query {
+    divisions: [Division]
+}
+
+type Mutation {
+    createDivision(name: String!): Division
+    deleteDivision(_id: String!): Division
+}

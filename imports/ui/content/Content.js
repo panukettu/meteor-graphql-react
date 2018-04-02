@@ -5,9 +5,9 @@ import { graphql } from "react-apollo";
 
 import AppBar from 'material-ui/AppBar';
 
-import Resolutions from "./resolutions/Resolutions";
+import Divisions from "./divisions/Divisions";
 
-const Content = ({resolutions, loading}) => (
+const Content = ({divisions, loading}) => (
 	<div id="main-content" style={styles.mainContent}>
 		<div id="main-content-header" style={styles.mainContentHeader}>
       top
@@ -16,17 +16,23 @@ const Content = ({resolutions, loading}) => (
     {loading ? (
       	<div>Loading</div>
     ) : (
-      <Resolutions resolutions={resolutions} />
+      <Divisions divisions={divisions} />
     )}
 		</div>
 	</div>
 );
 
 const query = gql`
-  query resolutions {
-    resolutions {
+  query divisions {
+    divisions {
       _id
       name
+      skills {
+        _id
+        name
+        info 
+        level
+      }
     }
   }
 `;

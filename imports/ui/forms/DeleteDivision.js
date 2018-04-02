@@ -8,18 +8,17 @@ import ActionInfo from 'material-ui/svg-icons/action/info';
 
 
 
-const deleteResolution = gql`
-  mutation deleteResolution($_id: String!) {
-    deleteResolution(_id: $_id) {
+const deleteDivision = gql`
+  mutation deleteDivision($_id: String!) {
+    deleteDivision(_id: $_id) {
       _id
     }
   }
 `;
 
-class DeleteResolution extends React.Component {
+class DeleteDivision extends React.Component {
   onSubmit = () => {
-    console.log(this.props._id);
-    this.props.deleteResolution({
+    this.props.deleteDivision({
       variables: {
         _id: this.props._id
       }
@@ -35,9 +34,9 @@ class DeleteResolution extends React.Component {
   }
 };
 
-export default graphql(deleteResolution, {
-  name: "deleteResolution",
+export default graphql(deleteDivision, {
+  name: "deleteDivision",
   options: {
-    refetchQueries: ['resolutions']
+    refetchQueries: ['divisions']
   }
-})(DeleteResolution);
+})(DeleteDivision);

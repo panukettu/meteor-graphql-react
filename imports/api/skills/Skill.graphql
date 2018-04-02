@@ -1,0 +1,12 @@
+type Skill {
+    _id: String
+    name: String
+    info: String
+    level: Int
+}
+
+extend type Mutation {
+    createSkill(name: String, divisionId: String, level: Int): Skill
+}
+
+

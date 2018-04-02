@@ -3,17 +3,17 @@ import { makeExecutableSchema } from "graphql-tools";
 
 import merge from "lodash/merge";
 
-import ResolutionSchema from "../../api/resolutions/Resolution.graphql";
-import ResolutionResolvers from "../../api/resolutions/resolvers";
-import GoalSchema from "../../api/goals/Goals.graphql";
-import GoalResolvers from "../../api/goals/resolvers";
+import DivisionSchema from "../../api/divisions/Division.graphql";
+import DivisionResolvers from "../../api/divisions/resolvers";
+import SkillSchema from "../../api/skills/Skill.graphql";
+import SkillResolvers from "../../api/skills/resolvers";
 import UserSchema from "../../api/users/User.graphql";
 import UserResolvers from "../../api/users/resolvers";
 
  
-const typeDefs = [ResolutionSchema, UserSchema, GoalSchema];
+const typeDefs = [DivisionSchema, UserSchema, SkillSchema];
 
-const resolvers = merge(ResolutionResolvers, UserResolvers, GoalResolvers);
+const resolvers = merge(DivisionResolvers, UserResolvers, SkillResolvers);
 
 const schema = makeExecutableSchema({
 	typeDefs,
@@ -22,4 +22,4 @@ const schema = makeExecutableSchema({
 
 createApolloServer({ schema });
 
-// bugggg
+// buggggggg
