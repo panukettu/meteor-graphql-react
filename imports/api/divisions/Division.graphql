@@ -13,6 +13,6 @@ type Query {
 }
 
 type Mutation {
-    createDivision(name: String!): Division
-    deleteDivision(_id: String!): Division
+    createDivision(name: String): Division
+    deleteDivision(_id: String): Division
 }
