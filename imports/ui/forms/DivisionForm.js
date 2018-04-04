@@ -34,15 +34,15 @@ class DivisionForm extends React.Component {
 
 	render() {
 		return (
-			<Paper style={styles.test}>
+			<Paper style={styles.container}>
 				<h2>Lisää aihepiiri</h2>
 				<TextField floatingLabelText="Aihe" onChange={this.handleChange} />
-				<FloatingActionButton mini="true" onClick={this.handleSubmit}>
+				<FloatingActionButton mini={true} onClick={this.handleSubmit}>
 					<AddCircle />
 				</FloatingActionButton>
-				<List>
+				<List style={styles.makeScrollable}>
 					{this.props.divisions.map(div => (
-            <ListItem>{div.name}</ListItem>
+            <ListItem key={div._id} >{div.name}</ListItem>
           ))}
 				</List>
 			</Paper>
@@ -58,8 +58,12 @@ export default graphql(createDivision, {
 })(DivisionForm);
 
 const styles = {
-	test: {
+	container: {
 		margin: 20,
-		padding: 20
-	}
+    padding: 20,
+  },
+  makeScrollable: {
+    height: '75%',
+    overflow: 'auto'
+  }
 };

@@ -18,20 +18,16 @@ import {
 	fullBlack
 } from "material-ui/styles/colors";
 
-import {
-	Toolbar,
-	Paper,
-	ToolbarTitle,
-	ToolbarGroup,
-	FloatingActionButton
-} from "material-ui";
+import { Toolbar, Paper, ToolbarTitle, ToolbarGroup } from "material-ui";
 
 import { Tabs, Tab } from "material-ui/Tabs";
-import Face from "material-ui/svg-icons/action/face";
 import CircularProgress from "material-ui/CircularProgress";
 
-import DivisionForm from "../forms/DivisionForm";
 import Content from "../content/Content";
+import DivisionForm from "../forms/DivisionForm";
+import Menu from "../menu/Menu.js";
+
+import Divisions from '../content/divisions/Divisions';
 
 const divisions = gql`
 	query divisions {
@@ -44,36 +40,23 @@ const divisions = gql`
 
 const Layout = ({ data }) => (
 	<div id="container" style={styles.container}>
-		<div id="top-container" style={styles.topContainer} />
-		<Toolbar>
-			<ToolbarTitle />
-			<ToolbarGroup>
-				<FloatingActionButton mini="true" style={styles.menuIcon}>
-					<Face />
-				</FloatingActionButton>
-				<FloatingActionButton
-					mini="true"
-					style={styles.menuIcon}
-					backgroundColor="#000"
-				>
-					<Face />
-				</FloatingActionButton>
-				<FloatingActionButton
-					mini="true"
-					style={styles.menuIcon}
-					backgroundColor="#4E342E"
-				>
-					<Face />
-				</FloatingActionButton>
-			</ToolbarGroup>
-		</Toolbar>
-		<div id="bottom-container" style={styles.bottomContainer}>
+		{/* <div id="top-container" style={styles.topContainer} /> */}
+    <div id="bottom-container" style={styles.bottomContainer}>
 			{data.loading ? (
 				<CircularProgress />
 			) : (
-				<DivisionForm divisions={data.divisions} /> 
+        <>
+				<DivisionForm divisions={data.divisions} />
+        <Divisions divisions={data.divisions}/>
+        </>
 			)}
 		</div>
+		<Toolbar>
+			<ToolbarTitle />
+			<ToolbarGroup>
+				<Menu />
+			</ToolbarGroup>
+		</Toolbar>
 	</div>
 );
 
@@ -98,12 +81,9 @@ const styles = {
 	},
 	bottomContainer: {
 		display: "flex",
-		flex: 2,
+		flex: 3,
 		flexDirection: "row",
-		justifyContent: "flex-start"
-	},
-	menuIcon: {
-		padding: 2,
-		margin: 2
+    justifyContent: "flex-start",
+    backgroundColor: grey900
 	}
 };
