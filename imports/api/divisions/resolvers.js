@@ -9,7 +9,7 @@ export default {
   Division : {
     _id: division => division._id,
     name: division => division.name,
-    skills: division => Skill.find({ divisionId: division._id}).fetch()
+    skills: division => Skills.find({ divisionId: division._id}).fetch()
   },
   Mutation: {
     createDivision(obj, { name }, { userId }) {

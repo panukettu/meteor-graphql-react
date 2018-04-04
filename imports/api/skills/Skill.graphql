@@ -3,10 +3,11 @@ type Skill {
     name: String
     info: String
     level: Int
+    url: String
 }
 
 extend type Mutation {
-    createSkill(name: String, divisionId: String, level: Int): Skill
+    createSkill(divisionId: String, name: String, info: String, level: Int, url: String): Skill
 }
 
 
