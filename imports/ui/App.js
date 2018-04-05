@@ -12,7 +12,7 @@ const App = ({ data }) => {
         <div>
             <div>
                 <h1>Hi, {data.name}!</h1>    
-                <ResolutionForm/>
+                <ResolutionForm refetch={data.refetch}/>
             </div>
             <ul>
                 {data.resolutions.map(resolution => (
