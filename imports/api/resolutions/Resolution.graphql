@@ -3,10 +3,19 @@
 # [todoId]
 
 type Resolution {
-    _id: String!
-    name: String!
+    _id: String
+    name: String
+}
+
+type Query {
+    resolutions: [Resolution]
 }
 
 type Mutation {
     createResolution(name: String!): Resolution
+<<<<<<< HEAD
 }
+=======
+    deleteResolution(_id: String!): Resolution
+}
+>>>>>>> 4ba9ab1c6750aa69eea12ce99859031230d0e049
