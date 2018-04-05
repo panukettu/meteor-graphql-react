@@ -34,6 +34,13 @@ const divisions = gql`
 		divisions {
 			_id
 			name
+      skills {
+        _id
+        name
+        info
+        level
+        url
+      }
 		}
 	}
 `;

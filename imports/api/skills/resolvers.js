@@ -10,6 +10,10 @@ export default {
         url
       });
       return Skills.findOne(skillId);
+    },
+    deleteSkill(obj, { _id }, context) {
+      const skillId = Skills.remove({_id});
+      return skillId
     }
   }
 };

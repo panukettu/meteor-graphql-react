@@ -22,4 +22,4 @@ const schema = makeExecutableSchema({
 
 createApolloServer({ schema });
 
-// buggggggggggg
+// bugggggggggggg

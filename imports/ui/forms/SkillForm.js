@@ -76,9 +76,7 @@ class SkillForm extends React.Component {
 
 		return (
 			<div>
-				<FloatingActionButton onClick={this.handleOpen} mini={true}>
-					<AddCircle />
-				</FloatingActionButton>
+			<AddCircle onClick={this.handleOpen}/>
 				<Dialog
 					actions={actions}
 					open={this.state.open}

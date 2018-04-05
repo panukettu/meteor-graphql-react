@@ -8,6 +8,7 @@ type Skill {
 
 extend type Mutation {
     createSkill(divisionId: String, name: String, info: String, level: Int, url: String): Skill
+    deleteSkill(_id: String): Skill
 }
 
 
