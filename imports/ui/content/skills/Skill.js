@@ -5,7 +5,9 @@ import { graphql } from "react-apollo";
 
 import { ListItem } from "material-ui";
 import Avatar from "material-ui/Avatar";
-import Backspace from "material-ui/svg-icons/content/backspace";
+
+import UserContext from "../../user-context";
+import AdminTool from './AdminTool';
 
 const deleteSkill = gql`
 	mutation deleteSkill($_id: String) {
@@ -24,8 +26,14 @@ const Skill = ({ skill, deleteSkill }) => {
 		});
 	};
 	return (
-		<ListItem leftAvatar={<Avatar src={skill.url} size={32} />} secondaryText={skill.info}>
-			{skill.name} <Backspace onClick={this.handleDelete} />
+		<ListItem
+			leftAvatar={<Avatar src={skill.url} size={32} />}
+			secondaryText={skill.info}
+		>
+			{skill.name}
+			<UserContext.Consumer>
+				{user => user && user.isAdmin ? <AdminTool skill={skill} deleteSkill={this.handleDelete.bind(this)}/> : ''}
+			</UserContext.Consumer>   
 		</ListItem>
 	);
 };

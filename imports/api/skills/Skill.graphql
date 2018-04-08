@@ -3,12 +3,14 @@ type Skill {
     name: String
     info: String
     level: Int
-    url: String
+    url: String,
+    completed: Boolean
 }
 
 extend type Mutation {
     createSkill(divisionId: String, name: String, info: String, level: Int, url: String): Skill
     deleteSkill(_id: String): Skill
+    toggleSkill(_id: String): Skill
 }
 
 

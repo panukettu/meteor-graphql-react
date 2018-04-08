@@ -8,9 +8,9 @@ import Skill from "./Skill";
 const Skills = ({ skills, divisionId }) => {
 	return (
 		<List>
-			{skills.map(skill => <Skill skill={skill} />)}
+			{skills.map(skill => <Skill key={skill._id} skill={skill} />)}
 			<ListItem>
-				<SkillForm divisionId={divisionId} />
+				<SkillForm divisionId={divisionId}/>
 			</ListItem>
 		</List>
 	);

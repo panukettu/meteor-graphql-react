@@ -24,10 +24,12 @@ import { Tabs, Tab } from "material-ui/Tabs";
 import CircularProgress from "material-ui/CircularProgress";
 
 import Content from "../content/Content";
-import DivisionForm from "../forms/DivisionForm";
+import DivisionForm from "../forms/division/DivisionForm";
 import Menu from "../menu/Menu.js";
 
 import Divisions from '../content/divisions/Divisions';
+
+import UserContext from '../user-context';
 
 const divisions = gql`
 	query divisions {
@@ -40,10 +42,12 @@ const divisions = gql`
         info
         level
         url
+        completed
       }
 		}
 	}
 `;
+
 
 const Layout = ({ data }) => (
 	<div id="container" style={styles.container}>
@@ -60,9 +64,9 @@ const Layout = ({ data }) => (
 		</div>
 		<Toolbar>
 			<ToolbarTitle />
-			<ToolbarGroup>
-				<Menu />
-			</ToolbarGroup>
+        <ToolbarGroup>
+          <Menu />
+        </ToolbarGroup>
 		</Toolbar>
 	</div>
 );

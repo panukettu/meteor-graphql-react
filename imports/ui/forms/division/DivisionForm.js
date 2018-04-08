@@ -6,7 +6,6 @@ import { graphql } from "react-apollo";
 import { Paper, FloatingActionButton, TextField } from "material-ui";
 import { List, ListItem } from "material-ui/List";
 import AddCircle from "material-ui/svg-icons/content/add-circle";
-import Division from "../../api/divisions/divisions";
 
 const createDivision = gql`
 	mutation createDivision($name: String) {
@@ -17,9 +16,7 @@ const createDivision = gql`
 `;
 
 class DivisionForm extends React.Component {
-
 	handleSubmit = e => {
-		console.log(this.name);
 		e.preventDefault();
 		this.props.createDivision({
 			variables: {
@@ -42,8 +39,8 @@ class DivisionForm extends React.Component {
 				</FloatingActionButton>
 				<List style={styles.makeScrollable}>
 					{this.props.divisions.map(div => (
-            <ListItem key={div._id} >{div.name}</ListItem>
-          ))}
+						<ListItem key={div._id}>{div.name}</ListItem>
+					))}
 				</List>
 			</Paper>
 		);
@@ -60,10 +57,10 @@ export default graphql(createDivision, {
 const styles = {
 	container: {
 		margin: 20,
-    padding: 20,
-  },
-  makeScrollable: {
-    height: '75%',
-    overflow: 'auto'
-  }
+		padding: 20
+	},
+	makeScrollable: {
+		height: "75%",
+		overflow: "auto"
+	}
 };

@@ -6,6 +6,7 @@ type Division {
     _id: String
     name: String
     skills: [Skill]
+    completed: Boolean
 }
 
 type Query {

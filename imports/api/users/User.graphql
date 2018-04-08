@@ -1,7 +1,7 @@
 type User {
   _id: String
   email: String
-  emailStartsWithP: Boolean
+  isAdmin: Boolean
 }
 
 extend type Query {

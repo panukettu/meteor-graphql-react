@@ -6,6 +6,6 @@ export default {
   },
   User: {
     email: user => user.emails ? user.emails[0].address : {},
-    emailStartsWithP: user => user.emails ? user.emails[0].address[0] == 'p': null
+    isAdmin: user => user.emails ? user.emails[0].address === 'panu@panu.com' : false
   }
 }
