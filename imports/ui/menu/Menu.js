@@ -4,6 +4,7 @@ import { ToolbarGroup, FloatingActionButton } from "material-ui";
 import Face from "material-ui/svg-icons/action/face";
 
 import LoginDialog from '../forms/user/LoginDialog';
+import UserContext from "../user-context";
 
 export default Menu = () => (
 	<ToolbarGroup>
@@ -17,7 +18,9 @@ export default Menu = () => (
 		>
 			<Face />
 		</FloatingActionButton>
-		<LoginDialog style={styles.menuIcon}/>
+    <UserContext.Consumer>
+		  {(context) => <LoginDialog {...context}/>}
+    </UserContext.Consumer>
 	</ToolbarGroup>
 );
 

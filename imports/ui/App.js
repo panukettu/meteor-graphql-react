@@ -12,6 +12,7 @@ import getMuiTheme from "material-ui/styles/getMuiTheme";
 import Layout from "./layout/Layout";
 
 import UserContext from './user-context';
+import ClientContext from './client-context';
 
 const userQuery = gql`
 	query user {
@@ -26,7 +27,7 @@ const userQuery = gql`
 const theme = getMuiTheme(Theme);
 
 const App = ({ user, client}) => (
-	<UserContext.Provider value={user}>
+	<UserContext.Provider value={{user, client}}>
 		<MuiThemeProvider muiTheme={theme}>
 			<Layout/>
 		</MuiThemeProvider>

@@ -7,7 +7,7 @@ import { ListItem } from "material-ui";
 import Avatar from "material-ui/Avatar";
 
 import UserContext from "../../user-context";
-import AdminTool from './AdminTool';
+import AdminTool from "./AdminTool";
 
 const deleteSkill = gql`
 	mutation deleteSkill($_id: String) {
@@ -25,6 +25,7 @@ const Skill = ({ skill, deleteSkill }) => {
 			}
 		});
 	};
+
 	return (
 		<ListItem
 			leftAvatar={<Avatar src={skill.url} size={32} />}
@@ -32,8 +33,17 @@ const Skill = ({ skill, deleteSkill }) => {
 		>
 			{skill.name}
 			<UserContext.Consumer>
-				{user => user && user.isAdmin ? <AdminTool skill={skill} deleteSkill={this.handleDelete.bind(this)}/> : ''}
-			</UserContext.Consumer>   
+				{({ user }) =>
+					user && user.isAdmin ? (
+						<AdminTool
+							skill={skill}
+							deleteSkill={this.handleDelete.bind(this)}
+						/>
+					) : (
+						""
+					)
+				}
+			</UserContext.Consumer>
 		</ListItem>
 	);
 };
