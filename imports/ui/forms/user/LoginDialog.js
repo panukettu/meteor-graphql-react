@@ -1,14 +1,10 @@
 import React from "react";
 
-import {
-	Dialog,
-	TextField,
-	RaisedButton
-} from "material-ui";
+import { Dialog, TextField, RaisedButton } from "material-ui";
+import AccountCircle from "material-ui/svg-icons/action/account-circle";
+import ExitToApp from "material-ui/svg-icons/action/exit-to-app";
 
-import { LoginButton, LogoutButton } from './LoginButton';
-
-import UserContext from "../../user-context";
+import { NiceButton } from "./Buttons";
 
 export default class LoginDialog extends React.Component {
 	state = {
@@ -23,8 +19,16 @@ export default class LoginDialog extends React.Component {
 		this.setState({ open: false });
 	};
 
-	handleSubmit = () => {
-		Meteor.loginWithPassword(this.email, this.password);
+	login = () => {
+		Meteor.loginWithPassword(this.email, this.password, error => {
+      if (!error) {this.props.client.resetStore();
+      this.handleClose();}
+		});
+	};
+
+	logout = () => {
+		Meteor.logout();
+		this.props.client.resetStore();
 	};
 
 	emailChange = (e, val) => {
@@ -36,20 +40,34 @@ export default class LoginDialog extends React.Component {
 	};
 
 	render() {
+		const { user } = this.props;
+
 		const actions = [
 			<RaisedButton
 				type="submit"
 				label="Login"
 				primary={true}
-				onClick={this.handleSubmit}
+				onClick={this.login}
 			/>
 		];
 
 		return (
 			<div>
-				<UserContext.Consumer>
-					{user => user && user._id ? <LogoutButton/> : <LoginButton handleOpen={this.handleOpen.bind(this)} style={this.props.style}/>}
-				</UserContext.Consumer>
+				{user && user._id ? (
+					<NiceButton
+						backgroundColor="#230101"
+						style={styles.logoutButton}
+						onClick={this.logout.bind(this)}
+						icon={<ExitToApp />}
+					/>
+				) : (
+					<NiceButton
+						backgroundColor="#01230c"
+						style={styles.loginButton}
+						onClick={this.handleOpen.bind(this)}
+						icon={<AccountCircle />}
+					/>
+				)}
 				<Dialog
 					actions={actions}
 					open={this.state.open}
@@ -78,5 +96,13 @@ const styles = {
 	dialog: {
 		width: "22%",
 		height: "30%"
+	},
+	loginButton: {
+		padding: 2,
+		margin: 2
+	},
+	logoutButton: {
+		padding: 2,
+		margin: 2
 	}
 };

@@ -37,7 +37,7 @@ export default class LoginForm extends React.Component {
         <h2>Login</h2>
             <TextField type="email" floatingLabelText="Email" onChange={this.onEmailChange.bind(this)}/>
             <TextField type="password" floatingLabelText="Password" onChange={this.onPasswordChange.bind(this)}/>
-            <RaisedButton type="submit" label="Enter" primary={true}/>
+            <RaisedButton type="submit" label="Login" primary={true}/>
         </Paper>
       </form>
     )
@@ -53,5 +53,15 @@ const styles = {
     flex: 1,
     flexDirection: 'column',
     padding: 15,
+  },
+  loginButton: {
+		padding: 2,
+    margin: 2,
+    backgroundColor: '#01230c'
+  },
+  logoutButton: {
+    padding: 2,
+    margin: 2,
+    backgroundColor: '#230101'
   }
 }
