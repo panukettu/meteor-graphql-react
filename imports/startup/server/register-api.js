@@ -10,8 +10,8 @@ import SkillResolvers from "../../api/skills/resolvers";
 import UserSchema from "../../api/users/User.graphql";
 import UserResolvers from "../../api/users/resolvers";
 
- 
 const typeDefs = [DivisionSchema, UserSchema, SkillSchema];
+
 
 const resolvers = merge(DivisionResolvers, UserResolvers, SkillResolvers);
 
