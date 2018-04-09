@@ -1,97 +1,37 @@
 import React from "react";
+
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import { withApollo } from "react-apollo";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import Theme from "./theme/Theme";
 import darkBaseTheme from "material-ui/styles/baseThemes/darkBaseTheme";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 
-<<<<<<< HEAD
-const App = ({ data }) => {
-    if(data.loading) {
-        return 'Loading';
-    } else {
-        return (
-        <div>
-            <div>
-                <h1>Hi, {data.name}!</h1>    
-                <ResolutionForm refetch={data.refetch}/>
-            </div>
-            <ul>
-                {data.resolutions.map(resolution => (
-                    <li key={resolution._id}>
-                        {resolution.name}
-                    </li>
-                ))}
-            </ul>
-        </div>
-        )
-    }
-=======
-import RegisterForm from "./forms/RegisterForm";
-import LoginForm from "./forms/LoginForm";
-import Sidebar from "./sidebar/Sidebar";
-import Content from "./content/Content";
+import Layout from "./layout/Layout";
 
-import AppBar from "material-ui/AppBar";
+import UserContext from './user-context';
 
-const App = ({ loading, client, user }) => {
-	if (loading) {
-		return "Loading";
-	} else {
-		return (
-			<MuiThemeProvider>
-				{user._id ? (
-					<div id="container" style={styles.container}>
-						<AppBar title={user.email} showMenuIconButton={false} />
-						<div id="content" style={styles.content}>
-							<Sidebar client={client} user={user} />
-							<Content />
-						</div>
-					</div>
-				) : (
-					<div style={styles.loginContainer}>
-						<LoginForm client={client} />
-						<RegisterForm client={client} />
-					</div>
-				)}
-			</MuiThemeProvider>
-		);
-	}
->>>>>>> 4ba9ab1c6750aa69eea12ce99859031230d0e049
-};
-
-const query = gql`
+const userQuery = gql`
 	query user {
 		user {
 			_id
 			email
+      isAdmin
 		}
 	}
 `;
 
-export default graphql(query, {
+const theme = getMuiTheme(Theme);
+
+const App = ({ user, client}) => (
+	<UserContext.Provider value={user}>
+		<MuiThemeProvider muiTheme={theme}>
+			<Layout/>
+		</MuiThemeProvider>
+	</UserContext.Provider>
+);
+export default graphql(userQuery, {
 	props: ({ data }) => ({ ...data })
 })(withApollo(App));
-
-const styles = {
-	container: {
-		display: "flex",
-		flex: 1,
-		flexDirection: "column"
-	},
-	content: {
-		display: "flex",
-		flex: 1,
-		flexDirection: "row"
-	},
-	loginContainer: {
-		display: "flex",
-		flex: 1,
-		flexDirection: "column",
-		alignItems: "center",
-		justifyContent: "center",
-		alignContent: "center"
-	}
-};
