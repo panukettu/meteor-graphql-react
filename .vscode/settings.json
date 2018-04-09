@@ -1,6 +1,5 @@
 {
   "editor.detectIndentation": false,
   "eslint.enable": false,
-  "prettier.useTabs": true,
-
+  "prettier.useTabs": true
 }

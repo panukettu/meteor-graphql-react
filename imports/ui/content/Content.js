@@ -1,11 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import gql from "graphql-tag";
-import { graphql } from "react-apollo";
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 
-import AppBar from 'material-ui/AppBar';
-
-import Divisions from "./divisions/Divisions";
+import Divisions from './divisions/Divisions';
 
 const Content = ({divisions, loading}) => (
 	<div id="main-content" style={styles.mainContent}>
@@ -13,11 +11,11 @@ const Content = ({divisions, loading}) => (
       top
 		</div>
 		<div id="main-content-page" style={styles.mainContentPage}>
-    {loading ? (
+			{loading ? (
       	<div>Loading</div>
-    ) : (
-      <Divisions divisions={divisions} />
-    )}
+			) : (
+				<Divisions divisions={divisions} />
+			)}
 		</div>
 	</div>
 );
@@ -38,19 +36,19 @@ const query = gql`
 `;
 
 export default graphql(query, {
-  props: ({ data }) => ({...data})
+	props: ({ data }) => ({...data})
 })(Content);
 
 const styles = {
-  mainContent: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column',
-  },
-  mainContentHeader: {
-    flex: 0.1
-  },
-  mainContentPage: {
-    flex: 0.9
-  }
-}
+	mainContent: {
+		display: 'flex',
+		flex: 1,
+		flexDirection: 'column',
+	},
+	mainContentHeader: {
+		flex: 0.1
+	},
+	mainContentPage: {
+		flex: 0.9
+	}
+};
