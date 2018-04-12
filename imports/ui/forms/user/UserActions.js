@@ -6,7 +6,7 @@ import ExitToApp from "material-ui/svg-icons/action/exit-to-app";
 
 import { NiceButton } from "./Buttons";
 
-export default class LoginDialog extends React.Component {
+export default class UserActions extends React.Component {
 	state = {
 		open: false
 	};
@@ -21,8 +21,10 @@ export default class LoginDialog extends React.Component {
 
 	login = () => {
 		Meteor.loginWithPassword(this.email, this.password, error => {
-      if (!error) {this.props.client.resetStore();
-      this.handleClose();}
+			if (!error) {
+				this.props.client.resetStore();
+				this.handleClose();
+			}
 		});
 	};
 

@@ -27,46 +27,48 @@ import Content from "../content/Content";
 import DivisionForm from "../forms/division/DivisionForm";
 import Menu from "../menu/Menu.js";
 
-import Divisions from '../content/divisions/Divisions';
+import Divisions from "../content/divisions/Divisions";
 
-import UserContext from '../user-context';
+import UserContext from "../user-context";
 
 const divisions = gql`
 	query divisions {
 		divisions {
 			_id
 			name
-      skills {
-        _id
-        name
-        info
-        level
-        url
-        completed
-      }
+			skills {
+				_id
+				name
+				info
+				level
+				url
+				completed
+			}
 		}
 	}
 `;
 
-
 const Layout = ({ data }) => (
 	<div id="container" style={styles.container}>
-		{/* <div id="top-container" style={styles.topContainer} /> */}
-    <div id="bottom-container" style={styles.bottomContainer}>
+		<div id="top-container" style={styles.topContainer}>
 			{data.loading ? (
 				<CircularProgress />
 			) : (
-        <>
-				<DivisionForm divisions={data.divisions} />
-        <Divisions divisions={data.divisions}/>
-        </>
+				<div style={{ flex: 1, display: "flex", flexWrap: "no-wrap" }}>
+					<div style={{flex: 1, display: "flex", flexWrap: "wrap"}}>
+              Other content
+					</div>
+					<div style={{flex: 1, display: "flex", flexWrap: "wrap"}}>	
+						<Divisions divisions={data.divisions} />
+					</div>
+				</div>
 			)}
 		</div>
 		<Toolbar>
 			<ToolbarTitle />
-        <ToolbarGroup>
-          <Menu />
-        </ToolbarGroup>
+			<ToolbarGroup>
+				<Menu />
+			</ToolbarGroup>
 		</Toolbar>
 	</div>
 );
@@ -81,20 +83,14 @@ const styles = {
 		flex: 1,
 		flexDirection: "column"
 	},
-	topContainer: {
-		display: "flex",
-		flex: 1,
-		flexDirection: "row",
-		backgroundColor: grey900
-	},
 	appBar: {
 		backgroundColor: grey800
 	},
-	bottomContainer: {
+	topContainer: {
 		display: "flex",
 		flex: 3,
 		flexDirection: "row",
-    justifyContent: "flex-start",
-    backgroundColor: grey900
+		justifyContent: "flex-start",
+		backgroundColor: grey900
 	}
 };

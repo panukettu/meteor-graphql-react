@@ -25,9 +25,12 @@ export default {
 			});
 			return Divisions.findOne(divisionId);
 		},
-		deleteDivision(obj, { _id }, context) {
-			const divisionId = Divisions.remove({ _id });
-			return _id;
+		deleteDivision(obj, { _id }, { userId }) {
+      if(userId) {
+        const divisionId = Divisions.remove({ _id });
+        return _id;
+      }
+      throw new Error('Unauthorized action.');
 		}
 	}
 };

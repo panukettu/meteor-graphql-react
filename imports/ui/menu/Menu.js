@@ -3,7 +3,7 @@ import React from "react";
 import { ToolbarGroup, FloatingActionButton } from "material-ui";
 import Face from "material-ui/svg-icons/action/face";
 
-import LoginDialog from '../forms/user/LoginDialog';
+import UserActions from '../forms/user/UserActions';
 import UserContext from "../user-context";
 
 export default Menu = () => (
@@ -19,7 +19,7 @@ export default Menu = () => (
 			<Face />
 		</FloatingActionButton>
     <UserContext.Consumer>
-		  {(context) => <LoginDialog {...context}/>}
+		  {(context) => <UserActions {...context}/>}
     </UserContext.Consumer>
 	</ToolbarGroup>
 );
